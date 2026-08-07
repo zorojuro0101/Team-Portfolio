@@ -1164,7 +1164,7 @@ button {
   }
 
   .showcase-details .detail-contact {
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 
