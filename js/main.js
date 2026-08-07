@@ -58,24 +58,52 @@
     });
   }
 
-  var memberCards = document.querySelectorAll(".member-card");
-  memberCards.forEach(function (card) {
-    card.addEventListener("click", function (e) {
-      if (e.target.closest(".member-details")) return;
-      var wasOpen = card.classList.contains("open");
-      memberCards.forEach(function (c) {
-        c.classList.remove("open");
+  var pickCards = document.querySelectorAll(".pick-card");
+  var showcasePanels = document.querySelectorAll(".showcase-panel");
+  var showcaseStage = document.querySelector(".showcase-stage");
+  var teamShowcase = document.querySelector(".team-showcase");
+  var supportsViewTransition = typeof document.startViewTransition === "function";
+
+  function applyState(id) {
+    pickCards.forEach(function (c) {
+      var active = c.getAttribute("data-member") === id;
+      c.classList.toggle("active", active);
+      c.setAttribute("aria-pressed", String(active));
+    });
+    showcasePanels.forEach(function (p) {
+      p.classList.toggle("active", p.getAttribute("data-panel") === id);
+    });
+    if (showcaseStage) {
+      showcaseStage.classList.toggle("open", Boolean(id));
+    }
+  }
+
+  function runWithTransition(update) {
+    if (supportsViewTransition) {
+      document.startViewTransition(update);
+    } else {
+      update();
+    }
+  }
+
+  if (teamShowcase && pickCards.length) {
+    pickCards.forEach(function (card) {
+      card.addEventListener("click", function () {
+        var id = card.getAttribute("data-member");
+        var alreadyOpen = card.classList.contains("active");
+        runWithTransition(function () {
+          applyState(alreadyOpen ? null : id);
+        });
       });
-      if (!wasOpen) {
-        card.classList.add("open");
-      }
     });
 
-    card.querySelectorAll(".member-close").forEach(function (btn) {
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        card.classList.remove("open");
-      });
+    document.addEventListener("click", function (e) {
+      if (teamShowcase.contains(e.target)) return;
+      if (showcaseStage.classList.contains("open")) {
+        runWithTransition(function () {
+          applyState(null);
+        });
+      }
     });
-  });
+  }
 })();
