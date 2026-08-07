@@ -58,6 +58,68 @@
     });
   }
 
+  var showreel = document.getElementById("showreel");
+  var showreelFrame = document.getElementById("showreel-frame");
+  var soundHint = document.getElementById("sound-hint");
+  var soundUnlocked = false;
+
+  if (showreel && showreelFrame) {
+    function unlockSound() {
+      showreel.muted = false;
+      soundUnlocked = true;
+      if (soundHint) {
+        soundHint.style.display = "none";
+      }
+      document.removeEventListener("pointerdown", unlockSound);
+      document.removeEventListener("keydown", unlockSound);
+    }
+
+    function playShowreel() {
+      if (soundUnlocked) {
+        showreel.play();
+        return;
+      }
+      showreel.muted = false;
+      var attempt = showreel.play();
+      if (attempt) {
+        attempt.catch(function () {
+          showreel.muted = true;
+          showreel.play();
+          if (soundHint) {
+            soundHint.style.display = "flex";
+          }
+          document.addEventListener("pointerdown", unlockSound);
+          document.addEventListener("keydown", unlockSound);
+        });
+      }
+    }
+
+    if (soundHint) {
+      soundHint.addEventListener("click", function () {
+        unlockSound();
+        showreel.play();
+      });
+    }
+
+    if ("IntersectionObserver" in window) {
+      var videoObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              playShowreel();
+            } else {
+              showreel.pause();
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+      videoObserver.observe(showreelFrame);
+    } else {
+      playShowreel();
+    }
+  }
+
   var pickCards = document.querySelectorAll(".pick-card");
   var showcasePanels = document.querySelectorAll(".showcase-panel");
   var showcaseStage = document.querySelector(".showcase-stage");
@@ -78,6 +140,16 @@
     }
   }
 
+  function setAvatarNames(id) {
+    pickCards.forEach(function (c) {
+      var av = c.querySelector(".pick-avatar");
+      var nm = c.querySelector(".pick-name");
+      var isTarget = c.getAttribute("data-member") === id;
+      av.style.viewTransitionName = isTarget ? "team-" + id : "";
+      nm.style.viewTransitionName = isTarget ? "team-name-" + id : "";
+    });
+  }
+
   function runWithTransition(update) {
     if (supportsViewTransition) {
       document.startViewTransition(update);
@@ -90,9 +162,11 @@
     pickCards.forEach(function (card) {
       card.addEventListener("click", function () {
         var id = card.getAttribute("data-member");
-        var alreadyOpen = card.classList.contains("active");
+        var next = card.classList.contains("active") ? null : id;
+        setAvatarNames(next);
         runWithTransition(function () {
-          applyState(alreadyOpen ? null : id);
+          setAvatarNames(null);
+          applyState(next);
         });
       });
     });
@@ -100,6 +174,7 @@
     document.addEventListener("click", function (e) {
       if (teamShowcase.contains(e.target)) return;
       if (showcaseStage.classList.contains("open")) {
+        setAvatarNames(null);
         runWithTransition(function () {
           applyState(null);
         });
