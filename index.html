@@ -11,7 +11,11 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">Team Portfolio</a>
-      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav class="site-nav" aria-label="Main navigation">
         <ul class="nav-list">
           <li><a href="pages/about.html">About</a></li>
@@ -25,25 +29,92 @@
   <main>
 
     <section class="hero">
-      <h1 class="hero-title">Welcome to Team Portfolio</h1>
-      <p class="hero-subtitle">Placeholder text for the landing page introduction.</p>
+      <p class="hero-eyebrow">Team Portfolio</p>
+      <h1 class="hero-title">Three minds. One vision.<br><span class="gradient-text">Built to impress.</span></h1>
+      <p class="hero-subtitle">We are Symon, Justine, and Zaldy — a team focused on building reliable systems, fixing what is broken, and keeping technology running smoothly.</p>
       <div class="hero-actions">
-        <a href="pages/about.html" class="btn btn-primary">About Us</a>
-        <a href="pages/projects.html" class="btn btn-outline">View Projects</a>
-        <a href="pages/services.html" class="btn btn-outline">Our Services</a>
+        <a href="pages/projects.html" class="btn btn-primary">View Our Projects</a>
+        <a href="pages/about.html" class="btn btn-outline">Meet the Team</a>
       </div>
     </section>
 
-    <section class="section" id="welcome">
-      <h2 class="section-title">Landing Page Content</h2>
-      <p class="section-subtitle">Placeholder text for the landing page content.</p>
-      <div class="about-content">Landing content goes here</div>
+    <section class="stats-strip">
+      <div class="container stats-inner">
+        <div class="reveal">
+          <div class="stat-number gradient-text">3</div>
+          <div class="stat-label">Team Members</div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="stat-number gradient-text">6</div>
+          <div class="stat-label">Services Offered</div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="stat-number gradient-text">6</div>
+          <div class="stat-label">Featured Projects</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-section">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">Showreel</p>
+        <h2 class="section-title">See what we do</h2>
+        <p class="section-subtitle">A quick look at our team and the work we have been building.</p>
+      </div>
+      <div class="video-frame reveal">
+        <div class="video-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M8 5.14v13.72a1 1 0 0 0 1.54.84l11.06-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14Z"/></svg>
+        </div>
+        <p class="video-caption">Video coming soon</p>
+        <p class="video-hint">Ilagay dito ang inyong team video</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head reveal">
+        <p class="section-eyebrow">Explore</p>
+        <h2 class="section-title">What we bring to the table</h2>
+        <p class="section-subtitle">Take a look at who we are, what we have built, and how we can help.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
+          </div>
+          <h3>Meet the Team</h3>
+          <p>Get to know our members — click each profile to see their story, skills, and contact details.</p>
+          <a href="pages/about.html" class="feature-link">Learn more</a>
+        </article>
+        <article class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z"/></svg>
+          </div>
+          <h3>Our Projects</h3>
+          <p>Browse the systems and applications we have designed and developed together as a team.</p>
+          <a href="pages/projects.html" class="feature-link">See the work</a>
+        </article>
+        <article class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"/></svg>
+          </div>
+          <h3>Our Services</h3>
+          <p>From troubleshooting to full system development and maintenance — we have you covered.</p>
+          <a href="pages/services.html" class="feature-link">Explore services</a>
+        </article>
+      </div>
     </section>
 
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Team Portfolio. All rights reserved.</p>
+    <div class="container">
+      <div class="footer-links">
+        <a href="pages/about.html">About</a>
+        <a href="pages/projects.html">Projects</a>
+        <a href="pages/services.html">Services</a>
+      </div>
+      <p>&copy; <span id="year"></span> Team Portfolio. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="js/main.js"></script>

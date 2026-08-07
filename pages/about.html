@@ -11,7 +11,11 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="../index.html" class="logo">Team Portfolio</a>
-      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <nav class="site-nav" aria-label="Main navigation">
         <ul class="nav-list">
           <li><a href="about.html" aria-current="page">About</a></li>
@@ -25,24 +29,152 @@
   <main>
 
     <section class="hero">
-      <h1 class="hero-title">About Us</h1>
-      <p class="hero-subtitle">Placeholder text for the team introduction.</p>
+      <p class="hero-eyebrow">About</p>
+      <h1 class="hero-title">We are <span class="gradient-text">Team Portfolio</span></h1>
+      <p class="hero-subtitle">A team of three passionate individuals building systems that work. Click any member to learn more.</p>
       <div class="hero-actions">
-        <a href="projects.html" class="btn btn-primary">View Projects</a>
+        <a href="projects.html" class="btn btn-primary">View Our Projects</a>
         <a href="services.html" class="btn btn-outline">Our Services</a>
       </div>
     </section>
 
-    <section class="section" id="about">
-      <h2 class="section-title">Who We Are</h2>
-      <p class="section-subtitle">Placeholder text for the team description.</p>
-      <div class="about-content">About content goes here</div>
+    <section class="section">
+      <div class="team-intro reveal">
+        <p class="section-eyebrow">Our Story</p>
+        <h2 class="section-title">Who we are</h2>
+        <p>Placeholder text para sa kwento ng team — dito ilalagay kung paano kayo nagsimula, anong mission niyo, at bakit ginagawa ninyo ang ginagawa ninyo.</p>
+      </div>
+
+      <div class="member-grid">
+
+        <article class="member-card reveal" data-member="1">
+          <div class="member-photo">
+            <div class="photo-placeholder photo-p1">SB</div>
+          </div>
+          <h3 class="member-name">Symon Kiel G. Beato</h3>
+          <p class="member-role">Project Manager</p>
+          <button class="member-toggle" type="button" aria-expanded="false">
+            View Profile
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="member-details">
+            <div class="details-inner">
+              <div class="details-body">
+                <div class="detail-item">
+                  <p class="detail-label">Bio</p>
+                  <p class="detail-bio">Placeholder bio ni Symon — dito ilalagay ang paglalarawan tungkol sa kanya, background, at kontribusyon sa team.</p>
+                </div>
+                <div class="detail-item">
+                  <p class="detail-label">Skills</p>
+                  <div class="skill-tags">
+                    <span class="skill-tag">Skill 1</span>
+                    <span class="skill-tag">Skill 2</span>
+                    <span class="skill-tag">Skill 3</span>
+                    <span class="skill-tag">Skill 4</span>
+                  </div>
+                </div>
+                <div class="detail-item detail-contact">
+                  <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+                  <a href="mailto:symon.beato@example.com">symon.beato@example.com</a>
+                </div>
+                <div class="detail-item">
+                  <button class="member-close" type="button">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="member-card reveal reveal-delay-1" data-member="2">
+          <div class="member-photo">
+            <div class="photo-placeholder photo-p2">JG</div>
+          </div>
+          <h3 class="member-name">Justine Mark R. Gahi</h3>
+          <p class="member-role">Lead Developer</p>
+          <button class="member-toggle" type="button" aria-expanded="false">
+            View Profile
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="member-details">
+            <div class="details-inner">
+              <div class="details-body">
+                <div class="detail-item">
+                  <p class="detail-label">Bio</p>
+                  <p class="detail-bio">Placeholder bio ni Justine — dito ilalagay ang paglalarawan tungkol sa kanya, background, at kontribusyon sa team.</p>
+                </div>
+                <div class="detail-item">
+                  <p class="detail-label">Skills</p>
+                  <div class="skill-tags">
+                    <span class="skill-tag">Skill 1</span>
+                    <span class="skill-tag">Skill 2</span>
+                    <span class="skill-tag">Skill 3</span>
+                    <span class="skill-tag">Skill 4</span>
+                  </div>
+                </div>
+                <div class="detail-item detail-contact">
+                  <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+                  <a href="mailto:justine.gahi@example.com">justine.gahi@example.com</a>
+                </div>
+                <div class="detail-item">
+                  <button class="member-close" type="button">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="member-card reveal reveal-delay-2" data-member="3">
+          <div class="member-photo">
+            <div class="photo-placeholder photo-p3">ZY</div>
+          </div>
+          <h3 class="member-name">Zaldy B. Ybardolaza II</h3>
+          <p class="member-role">Systems Engineer</p>
+          <button class="member-toggle" type="button" aria-expanded="false">
+            View Profile
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="member-details">
+            <div class="details-inner">
+              <div class="details-body">
+                <div class="detail-item">
+                  <p class="detail-label">Bio</p>
+                  <p class="detail-bio">Placeholder bio ni Zaldy — dito ilalagay ang paglalarawan tungkol sa kanya, background, at kontribusyon sa team.</p>
+                </div>
+                <div class="detail-item">
+                  <p class="detail-label">Skills</p>
+                  <div class="skill-tags">
+                    <span class="skill-tag">Skill 1</span>
+                    <span class="skill-tag">Skill 2</span>
+                    <span class="skill-tag">Skill 3</span>
+                    <span class="skill-tag">Skill 4</span>
+                  </div>
+                </div>
+                <div class="detail-item detail-contact">
+                  <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+                  <a href="mailto:zaldy.ybardolaza@example.com">zaldy.ybardolaza@example.com</a>
+                </div>
+                <div class="detail-item">
+                  <button class="member-close" type="button">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </section>
 
   </main>
 
   <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Team Portfolio. All rights reserved.</p>
+    <div class="container">
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="services.html">Services</a>
+      </div>
+      <p>&copy; <span id="year"></span> Team Portfolio. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="../js/main.js"></script>
