@@ -42,7 +42,7 @@
       <div class="section-head reveal">
         <p class="section-eyebrow">Portfolio</p>
         <h2 class="section-title">Projects we are proud of</h2>
-        <p class="section-subtitle">These are placeholder cards — real project screenshots, titles, and descriptions will go here.</p>
+        <p class="section-subtitle">Meet the projects we have built together: systems designed, developed, and maintained by our team.</p>
       </div>
 
       <div class="project-grid">
@@ -54,20 +54,23 @@
           <div class="project-body">
             <span class="project-tag">Web App</span>
             <h3 class="project-title">Project One</h3>
-            <p class="project-desc">Placeholder description for the first project — details about what we built and how it helped will go here.</p>
+            <p class="project-desc">Placeholder description for the first project. Details about what we built and how it helped will go here.</p>
             <a href="#" class="project-link">Learn more</a>
           </div>
         </article>
 
         <article class="project-card reveal reveal-delay-1">
-          <div class="project-media">
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+          <div class="project-media project-gallery gallery-dark" id="gallery-trigger" role="button" tabindex="0" aria-label="Open project screenshots">
+            <img src="../images/velare_mobile_logo.png" alt="Velare mobile app logo">
+            <span class="gallery-count">
+              <svg viewBox="0 0 24 24"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+              3 Photos
+            </span>
           </div>
           <div class="project-body">
             <span class="project-tag">Mobile App</span>
-            <h3 class="project-title">Project Two</h3>
-            <p class="project-desc">Placeholder description for the second project — details about what we built and how it helped will go here.</p>
-            <a href="#" class="project-link">Learn more</a>
+            <h3 class="project-title">Velare E-commerce Mobile App</h3>
+            <p class="project-desc">A complete e-commerce mobile app where users can browse products, create an account, and check out with ease. Clean interface, smooth experience, built to sell.</p>
           </div>
         </article>
 
@@ -78,7 +81,7 @@
           <div class="project-body">
             <span class="project-tag">System Design</span>
             <h3 class="project-title">Project Three</h3>
-            <p class="project-desc">Placeholder description for the third project — details about what we built and how it helped will go here.</p>
+            <p class="project-desc">Placeholder description for the third project. Details about what we built and how it helped will go here.</p>
             <a href="#" class="project-link">Learn more</a>
           </div>
         </article>
@@ -90,7 +93,7 @@
           <div class="project-body">
             <span class="project-tag">Database</span>
             <h3 class="project-title">Project Four</h3>
-            <p class="project-desc">Placeholder description for the fourth project — details about what we built and how it helped will go here.</p>
+            <p class="project-desc">Placeholder description for the fourth project. Details about what we built and how it helped will go here.</p>
             <a href="#" class="project-link">Learn more</a>
           </div>
         </article>
@@ -102,7 +105,7 @@
           <div class="project-body">
             <span class="project-tag">Automation</span>
             <h3 class="project-title">Project Five</h3>
-            <p class="project-desc">Placeholder description for the fifth project — details about what we built and how it helped will go here.</p>
+            <p class="project-desc">Placeholder description for the fifth project. Details about what we built and how it helped will go here.</p>
             <a href="#" class="project-link">Learn more</a>
           </div>
         </article>
@@ -114,7 +117,7 @@
           <div class="project-body">
             <span class="project-tag">UI / UX</span>
             <h3 class="project-title">Project Six</h3>
-            <p class="project-desc">Placeholder description for the sixth project — details about what we built and how it helped will go here.</p>
+            <p class="project-desc">Placeholder description for the sixth project. Details about what we built and how it helped will go here.</p>
             <a href="#" class="project-link">Learn more</a>
           </div>
         </article>
@@ -123,6 +126,31 @@
     </section>
 
   </main>
+
+  <div class="photo-modal" id="photo-modal" hidden>
+    <div class="photo-backdrop" data-photo-close></div>
+    <div class="photo-dialog" role="dialog" aria-modal="true" aria-label="Project screenshots">
+      <div class="photo-bar">
+        <span class="photo-title" id="photo-title">Login Page</span>
+        <button class="photo-close" data-photo-close aria-label="Close">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2.2" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="photo-stage" id="photo-stage">
+        <img id="photo-img" src="" alt="Project screenshot">
+        <button class="photo-nav photo-prev" id="photo-prev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+        </button>
+        <button class="photo-nav photo-next" id="photo-next" aria-label="Next photo">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+        </button>
+      </div>
+      <div class="photo-footer">
+        <span class="photo-counter" id="photo-counter">1 / 3</span>
+        <div class="photo-dots" id="photo-dots"></div>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container">

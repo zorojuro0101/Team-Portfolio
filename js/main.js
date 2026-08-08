@@ -181,4 +181,124 @@
       }
     });
   }
+
+  var galleryTrigger = document.getElementById("gallery-trigger");
+  var photoModal = document.getElementById("photo-modal");
+  if (galleryTrigger && photoModal) {
+    var photoImages = [
+      { src: "login.jpg", title: "Login Page" },
+      { src: "register.jpg", title: "Register Page" },
+      { src: "view_product.jpg", title: "View Product Page" }
+    ];
+    var photoIndex = 0;
+    var photoImg = document.getElementById("photo-img");
+    var photoTitle = document.getElementById("photo-title");
+    var photoCounter = document.getElementById("photo-counter");
+    var photoDots = document.getElementById("photo-dots");
+    var photoStage = document.getElementById("photo-stage");
+    var photoPrev = document.getElementById("photo-prev");
+    var photoNext = document.getElementById("photo-next");
+
+    function photoPath(item) {
+      return "../images/" + item.src;
+    }
+
+    function updatePhoto() {
+      if (!photoImg) return;
+      photoImg.classList.remove("loaded");
+      var item = photoImages[photoIndex];
+      photoImg.onload = function () {
+        photoImg.classList.add("loaded");
+      };
+      photoImg.src = photoPath(item);
+      if (photoTitle) {
+        photoTitle.textContent = item.title;
+      }
+      if (photoCounter) {
+        photoCounter.textContent = photoIndex + 1 + " / " + photoImages.length;
+      }
+      if (photoDots) {
+        photoDots.innerHTML = "";
+        photoImages.forEach(function (_, i) {
+          var dot = document.createElement("span");
+          dot.className = "photo-dot" + (i === photoIndex ? " active" : "");
+          photoDots.appendChild(dot);
+        });
+      }
+    }
+
+    function openPhotoModal() {
+      photoModal.hidden = false;
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          photoModal.classList.add("open");
+        });
+      });
+      updatePhoto();
+      document.body.style.overflow = "hidden";
+    }
+
+    function closePhotoModal() {
+      photoModal.classList.remove("open");
+      document.body.style.overflow = "";
+      setTimeout(function () {
+        photoModal.hidden = true;
+      }, 450);
+    }
+
+    function photoStep(dir) {
+      photoIndex = (photoIndex + dir + photoImages.length) % photoImages.length;
+      updatePhoto();
+    }
+
+    galleryTrigger.addEventListener("click", openPhotoModal);
+    galleryTrigger.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openPhotoModal();
+      }
+    });
+
+    photoModal.querySelectorAll("[data-photo-close]").forEach(function (el) {
+      el.addEventListener("click", closePhotoModal);
+    });
+
+    if (photoPrev) {
+      photoPrev.addEventListener("click", function () {
+        photoStep(-1);
+      });
+    }
+    if (photoNext) {
+      photoNext.addEventListener("click", function () {
+        photoStep(1);
+      });
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (photoModal.hidden) return;
+      if (e.key === "Escape") {
+        closePhotoModal();
+      } else if (e.key === "ArrowLeft") {
+        photoStep(-1);
+      } else if (e.key === "ArrowRight") {
+        photoStep(1);
+      }
+    });
+
+    var touchX = null;
+    if (photoStage) {
+      photoStage.addEventListener("touchstart", function (e) {
+        touchX = e.touches[0].clientX;
+      }, { passive: true });
+
+      photoStage.addEventListener("touchend", function (e) {
+        if (touchX === null) return;
+        var dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) > 40) {
+          photoStep(dx > 0 ? -1 : 1);
+        }
+      }, { passive: true });
+    }
+  }
 })();

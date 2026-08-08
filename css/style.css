@@ -1003,6 +1003,249 @@ button {
 .reveal-delay-3 { transition-delay: 300ms; }
 .reveal-delay-4 { transition-delay: 400ms; }
 
+/* ===== Project gallery (mobile app) ===== */
+
+.project-gallery {
+  position: relative;
+  cursor: pointer;
+}
+
+.project-gallery.gallery-dark {
+  background-color: #000000;
+}
+
+.project-card:hover .project-gallery.gallery-dark {
+  background-color: #000000;
+}
+
+.project-gallery.gallery-dark img {
+  object-fit: contain;
+  padding: 20px;
+}
+
+.project-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms var(--ease-apple);
+}
+
+.project-card:hover .project-gallery img {
+  transform: scale(1.04);
+}
+
+.gallery-count {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(29, 29, 31, 0.7);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.gallery-count svg {
+  width: 12px;
+  height: 12px;
+  fill: #ffffff;
+}
+
+/* ===== Photo modal (Apple style) ===== */
+
+.photo-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.photo-modal[hidden] {
+  display: none !important;
+}
+
+.photo-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  backdrop-filter: saturate(180%) blur(24px);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-apple);
+}
+
+.photo-modal.open .photo-backdrop {
+  opacity: 1;
+}
+
+.photo-dialog {
+  position: relative;
+  width: min(860px, 100%);
+  background-color: rgba(255, 255, 255, 0.98);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: scale(0.94) translateY(12px);
+  transition: opacity 420ms var(--ease-apple), transform 420ms var(--ease-apple);
+}
+
+.photo-modal.open .photo-dialog {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.photo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.photo-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.photo-close {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  margin-left: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.06);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 250ms var(--ease-apple), transform 250ms var(--ease-apple);
+}
+
+.photo-close:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+  transform: scale(1.08);
+}
+
+.photo-close svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+}
+
+.photo-stage {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.photo-stage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 280ms ease;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+}
+
+.photo-stage img.loaded {
+  opacity: 1;
+}
+
+.photo-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.08);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  backdrop-filter: saturate(180%) blur(16px);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 250ms var(--ease-apple), transform 250ms var(--ease-apple);
+}
+
+.photo-nav:hover {
+  background-color: rgba(0, 0, 0, 0.16);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.photo-prev {
+  left: 16px;
+}
+
+.photo-next {
+  right: 16px;
+}
+
+.photo-nav svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.photo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.photo-counter {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.photo-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.photo-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.18);
+  transition: background-color 300ms var(--ease-apple), transform 300ms var(--ease-apple);
+}
+
+.photo-dot.active {
+  background-color: var(--color-accent);
+  transform: scale(1.25);
+}
+
 /* ===== Mobile (<= 768px) ===== */
 
 @media (max-width: 768px) {
@@ -1165,6 +1408,32 @@ button {
 
   .showcase-details .detail-contact {
     justify-content: flex-start;
+  }
+
+  .photo-modal {
+    padding: 12px;
+  }
+
+  .photo-dialog {
+    width: min(300px, 100%);
+    border-radius: 18px;
+  }
+
+  .photo-stage {
+    aspect-ratio: 9 / 16;
+  }
+
+  .photo-nav {
+    width: 38px;
+    height: 38px;
+  }
+
+  .photo-prev {
+    left: 10px;
+  }
+
+  .photo-next {
+    right: 10px;
   }
 }
 
