@@ -1005,6 +1005,10 @@ button {
 
 /* ===== Project gallery (mobile app) ===== */
 
+.project-card.is-gallery {
+  cursor: pointer;
+}
+
 .project-gallery {
   position: relative;
   cursor: pointer;
@@ -1027,11 +1031,6 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 500ms var(--ease-apple);
-}
-
-.project-card:hover .project-gallery img {
-  transform: scale(1.04);
 }
 
 .gallery-count {
@@ -1076,9 +1075,9 @@ button {
 .photo-backdrop {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.55);
-  -webkit-backdrop-filter: saturate(180%) blur(24px);
-  backdrop-filter: saturate(180%) blur(24px);
+  background-color: rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: saturate(160%) blur(2px);
+  backdrop-filter: saturate(160%) blur(2px);
   opacity: 0;
   transition: opacity 400ms var(--ease-apple);
 }
@@ -1121,6 +1120,58 @@ button {
   text-overflow: ellipsis;
 }
 
+.photo-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.photo-site {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background-color: #d5e3f7;
+  color: #3f6fb5;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 4px 4px 10px rgba(174, 190, 215, 0.55), -4px -4px 10px rgba(255, 255, 255, 0.95);
+  transition: box-shadow 250ms var(--ease-apple), transform 250ms var(--ease-apple);
+}
+
+.photo-site:hover {
+  transform: scale(1.03);
+  box-shadow: 6px 6px 14px rgba(174, 190, 215, 0.7), -6px -6px 14px rgba(255, 255, 255, 1);
+}
+
+.photo-site:active {
+  transform: scale(0.98);
+  box-shadow: inset 3px 3px 8px rgba(174, 190, 215, 0.6), inset -3px -3px 8px rgba(255, 255, 255, 0.95);
+}
+
+.photo-site[hidden] {
+  display: none;
+}
+
+.photo-download {
+  background-color: #d5e3f7;
+  color: #3f6fb5;
+}
+
+.photo-site svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .photo-close {
   flex-shrink: 0;
   width: 30px;
@@ -1128,18 +1179,24 @@ button {
   margin-left: 12px;
   border-radius: 50%;
   border: none;
-  background-color: rgba(0, 0, 0, 0.06);
-  color: var(--color-text);
+  background-color: #e8e7f0;
+  color: #7a7a85;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 250ms var(--ease-apple), transform 250ms var(--ease-apple);
+  box-shadow: 4px 4px 10px rgba(174, 190, 215, 0.55), -4px -4px 10px rgba(255, 255, 255, 0.9);
+  transition: box-shadow 250ms var(--ease-apple), transform 250ms var(--ease-apple);
 }
 
 .photo-close:hover {
-  background-color: rgba(0, 0, 0, 0.12);
-  transform: scale(1.08);
+  transform: scale(1.06);
+  box-shadow: 6px 6px 14px rgba(174, 190, 215, 0.65), -6px -6px 14px rgba(255, 255, 255, 1);
+}
+
+.photo-close:active {
+  transform: scale(0.98);
+  box-shadow: inset 3px 3px 8px rgba(174, 190, 215, 0.6), inset -3px -3px 8px rgba(255, 255, 255, 0.95);
 }
 
 .photo-close svg {
@@ -1182,21 +1239,25 @@ button {
   height: 44px;
   border-radius: 50%;
   border: none;
-  background-color: rgba(0, 0, 0, 0.08);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
-  backdrop-filter: saturate(180%) blur(16px);
-  color: var(--color-text);
+  background-color: #dce7f8;
+  color: #4a7fc0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: background-color 250ms var(--ease-apple), transform 250ms var(--ease-apple);
+  box-shadow: 5px 5px 12px rgba(174, 190, 215, 0.6), -5px -5px 12px rgba(255, 255, 255, 0.95);
+  transition: box-shadow 250ms var(--ease-apple), transform 250ms var(--ease-apple);
 }
 
 .photo-nav:hover {
-  background-color: rgba(0, 0, 0, 0.16);
-  transform: translateY(-50%) scale(1.08);
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 7px 7px 16px rgba(174, 190, 215, 0.7), -7px -7px 16px rgba(255, 255, 255, 1);
+}
+
+.photo-nav:active {
+  transform: translateY(-50%) scale(0.98);
+  box-shadow: inset 4px 4px 10px rgba(174, 190, 215, 0.65), inset -4px -4px 10px rgba(255, 255, 255, 0.95);
 }
 
 .photo-prev {
@@ -1214,6 +1275,13 @@ button {
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.photo-caption {
+  padding: 10px 16px 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
 }
 
 .photo-footer {
@@ -1415,7 +1483,7 @@ button {
   }
 
   .photo-dialog {
-    width: min(300px, 100%);
+    width: min(340px, 100%);
     border-radius: 18px;
   }
 
@@ -1434,6 +1502,11 @@ button {
 
   .photo-next {
     right: 10px;
+  }
+
+  .photo-site {
+    padding: 5px 10px;
+    font-size: 0.75rem;
   }
 }
 
