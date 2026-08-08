@@ -182,14 +182,10 @@
     });
   }
 
-  var galleryTrigger = document.getElementById("gallery-trigger");
+  var galleryTriggers = document.querySelectorAll("[data-gallery]");
   var photoModal = document.getElementById("photo-modal");
-  if (galleryTrigger && photoModal) {
-    var photoImages = [
-      { src: "login.jpg", title: "Login Page" },
-      { src: "register.jpg", title: "Register Page" },
-      { src: "view_product.jpg", title: "View Product Page" }
-    ];
+  if (galleryTriggers.length && photoModal) {
+    var photoImages = [];
     var photoIndex = 0;
     var photoImg = document.getElementById("photo-img");
     var photoTitle = document.getElementById("photo-title");
@@ -251,12 +247,20 @@
       updatePhoto();
     }
 
-    galleryTrigger.addEventListener("click", openPhotoModal);
-    galleryTrigger.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
+    galleryTriggers.forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        photoImages = JSON.parse(trigger.getAttribute("data-gallery"));
+        photoIndex = 0;
         openPhotoModal();
-      }
+      });
+      trigger.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          photoImages = JSON.parse(trigger.getAttribute("data-gallery"));
+          photoIndex = 0;
+          openPhotoModal();
+        }
+      });
     });
 
     photoModal.querySelectorAll("[data-photo-close]").forEach(function (el) {
