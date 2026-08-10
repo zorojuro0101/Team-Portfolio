@@ -186,6 +186,8 @@
   var photoModal = document.getElementById("photo-modal");
   if (galleryTriggers.length && photoModal) {
     var photoImages = [];
+    var photoSiteUrl = null;
+    var photoDownloadUrl = null;
     var photoIndex = 0;
     var photoImg = document.getElementById("photo-img");
     var photoTitle = document.getElementById("photo-title");
@@ -194,6 +196,8 @@
     var photoStage = document.getElementById("photo-stage");
     var photoPrev = document.getElementById("photo-prev");
     var photoNext = document.getElementById("photo-next");
+    var photoSite = document.getElementById("photo-site");
+    var photoDownload = document.getElementById("photo-download");
 
     function photoPath(item) {
       return "../images/" + item.src;
@@ -220,6 +224,22 @@
           dot.className = "photo-dot" + (i === photoIndex ? " active" : "");
           photoDots.appendChild(dot);
         });
+      }
+      if (photoSite) {
+        if (photoSiteUrl) {
+          photoSite.href = photoSiteUrl;
+          photoSite.hidden = false;
+        } else {
+          photoSite.hidden = true;
+        }
+      }
+      if (photoDownload) {
+        if (photoDownloadUrl) {
+          photoDownload.href = photoDownloadUrl;
+          photoDownload.hidden = false;
+        } else {
+          photoDownload.hidden = true;
+        }
       }
     }
 
@@ -250,6 +270,8 @@
     galleryTriggers.forEach(function (trigger) {
       trigger.addEventListener("click", function () {
         photoImages = JSON.parse(trigger.getAttribute("data-gallery"));
+        photoSiteUrl = trigger.getAttribute("data-site");
+        photoDownloadUrl = trigger.getAttribute("data-download");
         photoIndex = 0;
         openPhotoModal();
       });
@@ -257,6 +279,8 @@
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           photoImages = JSON.parse(trigger.getAttribute("data-gallery"));
+          photoSiteUrl = trigger.getAttribute("data-site");
+          photoDownloadUrl = trigger.getAttribute("data-download");
           photoIndex = 0;
           openPhotoModal();
         }
