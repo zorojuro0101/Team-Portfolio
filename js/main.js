@@ -272,6 +272,14 @@
         photoImages = JSON.parse(trigger.getAttribute("data-gallery"));
         photoSiteUrl = trigger.getAttribute("data-site");
         photoDownloadUrl = trigger.getAttribute("data-download");
+        var acct = trigger.getAttribute("data-account");
+        accountData = acct ? JSON.parse(acct) : null;
+        if (photoSample) {
+          photoSample.hidden = !accountData;
+        }
+        if (photoStage) {
+          photoStage.classList.toggle("inset", trigger.id === "uniorg-trigger");
+        }
         photoIndex = 0;
         openPhotoModal();
       });
@@ -281,6 +289,14 @@
           photoImages = JSON.parse(trigger.getAttribute("data-gallery"));
           photoSiteUrl = trigger.getAttribute("data-site");
           photoDownloadUrl = trigger.getAttribute("data-download");
+          var acct = trigger.getAttribute("data-account");
+          accountData = acct ? JSON.parse(acct) : null;
+          if (photoSample) {
+            photoSample.hidden = !accountData;
+          }
+          if (photoStage) {
+            photoStage.classList.toggle("inset", trigger.id === "uniorg-trigger");
+          }
           photoIndex = 0;
           openPhotoModal();
         }
@@ -304,6 +320,7 @@
 
     document.addEventListener("keydown", function (e) {
       if (photoModal.hidden) return;
+      if (accountModal && !accountModal.hidden) return;
       if (e.key === "Escape") {
         closePhotoModal();
       } else if (e.key === "ArrowLeft") {
@@ -329,4 +346,86 @@
       }, { passive: true });
     }
   }
+
+  var accountModal = document.getElementById("account-modal");
+  var photoSample = document.getElementById("photo-sample");
+  var accountEmail = document.getElementById("account-email");
+  var accountPassword = document.getElementById("account-password");
+  var accountCta = document.getElementById("account-cta");
+  var accountData = null;
+
+  function openAccountModal() {
+    if (!accountModal) return;
+    if (photoModal && !photoModal.hidden) {
+      photoModal.classList.add("shift-left");
+    }
+    if (accountData) {
+      var idLabel = document.getElementById("account-id-label");
+      if (accountData.id) {
+        if (accountEmail) accountEmail.textContent = accountData.id;
+        if (idLabel) idLabel.textContent = "Student ID";
+      } else {
+        if (accountEmail) accountEmail.textContent = accountData.email;
+        if (idLabel) idLabel.textContent = "Email";
+      }
+      if (accountPassword) accountPassword.textContent = accountData.password;
+    }
+    if (accountCta && photoSiteUrl) {
+      accountCta.href = photoSiteUrl;
+    }
+    accountModal.hidden = false;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        accountModal.classList.add("open");
+      });
+    });
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeAccountModal() {
+    if (!accountModal || accountModal.hidden) return;
+    accountModal.classList.remove("open");
+    if (photoModal) photoModal.classList.remove("shift-left");
+    setTimeout(function () {
+      accountModal.hidden = true;
+    }, 450);
+    if (photoModal && photoModal.hidden) {
+      document.body.style.overflow = "";
+    }
+  }
+
+  if (photoSample) {
+    photoSample.addEventListener("click", openAccountModal);
+  }
+
+  if (accountModal) {
+    accountModal.querySelectorAll("[data-account-close]").forEach(function (el) {
+      el.addEventListener("click", closeAccountModal);
+    });
+  }
+
+  document.querySelectorAll("[data-copy-target]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = document.getElementById(btn.getAttribute("data-copy-target"));
+      var text = target ? target.textContent.trim() : "";
+      var label = btn.querySelector("[data-copy-label]");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          if (label) {
+            var original = label.textContent;
+            label.textContent = "Copied!";
+            setTimeout(function () {
+              label.textContent = original;
+            }, 1600);
+          }
+        });
+      }
+    });
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (accountModal && !accountModal.hidden && e.key === "Escape") {
+      closeAccountModal();
+    }
+  });
 })();

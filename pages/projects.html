@@ -48,8 +48,8 @@
       <div class="project-grid">
 
         <article class="project-card reveal">
-          <div class="project-media project-gallery gallery-dark" id="gallery-trigger-1" data-gallery='[{"src":"project1_1.png","title":"Home Page"},{"src":"project1_2.png","title":"Shop Page"},{"src":"project1_3.png","title":"Chat Page"}]' role="button" tabindex="0" aria-label="Open project screenshots">
-            <img src="../images/project1_1.png" alt="Velare website home page">
+          <div class="project-media project-gallery gallery-dark" id="gallery-trigger-1" data-gallery='[{"src":"project1_1.png","title":"Home Page"},{"src":"project1_2.png","title":"Shop Page"},{"src":"project1_3.png","title":"Chat Page"}]' data-site="https://web-production-2c6e.up.railway.app" data-account='{"email":"sampleuser@gmail.com","password":"1234"}' role="button" tabindex="0" aria-label="Open project screenshots">
+            <img src="../images/velare_mobile_logo.png" alt="Velare website logo">
             <span class="gallery-count">
               <svg viewBox="0 0 24 24"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
               3 Photos
@@ -58,8 +58,7 @@
           <div class="project-body">
             <span class="project-tag">Web App</span>
             <h3 class="project-title">Velare E-commerce Website</h3>
-            <p class="project-desc">The web version of our Velare e-commerce platform — browse collections, shop online, and reach support through live chat, all in a fast, responsive web app.</p>
-            <a href="https://web-production-2c6e.up.railway.app" class="project-link" target="_blank" rel="noopener">Visit Website</a>
+            <p class="project-desc">The web version of our Velare e-commerce platform. Browse collections, shop online, and reach support through live chat in a fast, responsive web app.</p>
           </div>
         </article>
 
@@ -79,7 +78,7 @@
         </article>
 
         <article class="project-card reveal reveal-delay-2 is-gallery">
-          <div class="project-media project-gallery" id="uniorg-trigger" data-gallery='[{"src":"uniorg-placeholder-1.svg","title":"Dashboard"},{"src":"uniorg-placeholder-2.svg","title":"Documents"},{"src":"uniorg-placeholder-3.svg","title":"Elections"}]' data-site="https://uniorg-6yjm.onrender.com" role="button" tabindex="0" aria-label="Open UniOrg System screenshots">
+          <div class="project-media project-gallery" id="uniorg-trigger" data-gallery='[{"src":"uniorg_homepage.png","title":"Homepage"},{"src":"uniorg_login.png","title":"Login"},{"src":"uniorg_register.png","title":"Register"}]' data-site="https://uniorg-6yjm.onrender.com" data-account='{"id":"0123-1507","password":"Pass1234"}' role="button" tabindex="0" aria-label="Open UniOrg System screenshots">
             <img src="../images/uniorg.png" alt="UniOrg System interface">
             <span class="gallery-count">
               <svg viewBox="0 0 24 24"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
@@ -148,6 +147,10 @@
             <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
             Download APK
           </a>
+          <button class="photo-site photo-sample" id="photo-sample" type="button" hidden>
+            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"/></svg>
+            Sample Account
+          </button>
           <button class="photo-close" data-photo-close aria-label="Close">
             <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2.2" d="M6 6l12 12M18 6L6 18"/></svg>
           </button>
@@ -165,6 +168,50 @@
       <div class="photo-footer">
         <span class="photo-counter" id="photo-counter">1 / 3</span>
         <div class="photo-dots" id="photo-dots"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="account-modal" id="account-modal" hidden>
+    <div class="account-backdrop" data-account-close></div>
+    <div class="account-dialog" role="dialog" aria-modal="true" aria-label="Sample account credentials">
+      <div class="account-header">
+        <span class="account-badge">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"/></svg>
+        </span>
+        <div class="account-heading">
+          <h3 class="account-title">Sample Account</h3>
+          <p class="account-subtitle">Use these credentials to explore the demo website</p>
+        </div>
+        <button class="account-close" type="button" data-account-close aria-label="Close">
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2.2" d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="account-body">
+        <div class="account-field">
+          <span class="account-label" id="account-id-label">Email</span>
+          <div class="account-row">
+            <code class="account-value" id="account-email">sampleuser@gmail.com</code>
+            <button class="account-copy" type="button" data-copy-target="account-email" aria-label="Copy email">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5A3.375 3.375 0 0 0 6.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.251 2.251 0 0 0-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 0 0-9-9Z"/></svg>
+              <span data-copy-label>Copy</span>
+            </button>
+          </div>
+        </div>
+        <div class="account-field">
+          <span class="account-label">Password</span>
+          <div class="account-row">
+            <code class="account-value" id="account-password">1234</code>
+            <button class="account-copy" type="button" data-copy-target="account-password" aria-label="Copy password">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5A3.375 3.375 0 0 0 6.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.251 2.251 0 0 0-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 0 0-9-9Z"/></svg>
+              <span data-copy-label>Copy</span>
+            </button>
+          </div>
+        </div>
+        <a class="account-cta" id="account-cta" href="https://web-production-2c6e.up.railway.app" target="_blank" rel="noopener">
+          Open Website
+          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
       </div>
     </div>
   </div>

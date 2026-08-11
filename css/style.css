@@ -1040,6 +1040,11 @@ button {
   object-fit: cover;
 }
 
+.project-gallery#uniorg-trigger img {
+  object-fit: contain;
+  padding: 20px;
+}
+
 .gallery-count {
   position: absolute;
   right: 12px;
@@ -1140,6 +1145,7 @@ button {
   align-items: center;
   gap: 6px;
   padding: 6px 14px;
+  border: none;
   border-radius: var(--radius-pill);
   background-color: #d5e3f7;
   color: #3f6fb5;
@@ -1147,6 +1153,7 @@ button {
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
+  cursor: pointer;
   box-shadow: 4px 4px 10px rgba(174, 190, 215, 0.55), -4px -4px 10px rgba(255, 255, 255, 0.95);
   transition: box-shadow 250ms var(--ease-apple), transform 250ms var(--ease-apple);
 }
@@ -1234,6 +1241,10 @@ button {
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
 }
 
+.photo-stage.inset img {
+  transform: scale(1.08);
+}
+
 .photo-stage img.loaded {
   opacity: 1;
 }
@@ -1319,6 +1330,249 @@ button {
 .photo-dot.active {
   background-color: var(--color-accent);
   transform: scale(1.25);
+}
+
+/* ===== Account modal (split view) ===== */
+
+.photo-modal.shift-left .photo-dialog {
+  transform: translateX(calc(-1 * var(--account-shift, 110px))) scale(0.97);
+}
+
+.photo-sample[hidden] {
+  display: none;
+}
+
+.account-modal {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-modal) + 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 24px;
+  pointer-events: none;
+}
+
+.account-modal[hidden] {
+  display: none !important;
+}
+
+.account-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: saturate(160%) blur(2px);
+  backdrop-filter: saturate(160%) blur(2px);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-apple);
+  pointer-events: auto;
+}
+
+.account-modal.open .account-backdrop {
+  opacity: 1;
+}
+
+.account-dialog {
+  position: relative;
+  width: min(400px, 100%);
+  background-color: rgba(255, 255, 255, 0.98);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateX(56px) scale(0.97);
+  transition: opacity 450ms var(--ease-apple), transform 450ms var(--ease-apple);
+  pointer-events: auto;
+}
+
+.account-modal.open .account-dialog {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.account-badge {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #dce7f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-badge svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #3f6fb5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.account-heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-title {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.account-subtitle {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.account-close {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: #dce7f8;
+  color: #7a7a85;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 250ms var(--ease-apple), transform 250ms var(--ease-apple);
+}
+
+.account-close:hover {
+  background-color: #cbd9f0;
+  transform: scale(1.06);
+}
+
+.account-close:active {
+  transform: scale(0.98);
+}
+
+.account-close svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.account-body {
+  padding: 20px;
+}
+
+.account-field + .account-field {
+  margin-top: 14px;
+}
+
+.account-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: 6px;
+}
+
+.account-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.account-value {
+  flex: 1;
+  min-width: 0;
+  font-family: "SF Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background-color: #dce7f8;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.account-copy {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 12px;
+  border: none;
+  background-color: #dce7f8;
+  color: #3f6fb5;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 250ms var(--ease-apple), transform 250ms var(--ease-apple);
+}
+
+.account-copy:hover {
+  background-color: #cbd9f0;
+  transform: translateY(-1px);
+}
+
+.account-copy:active {
+  transform: scale(0.97);
+}
+
+.account-copy svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.account-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent);
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: background-color 250ms var(--ease-apple), transform 250ms var(--ease-apple), box-shadow 250ms var(--ease-apple);
+}
+
+.account-cta:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(0, 113, 227, 0.35);
+}
+
+.account-cta:active {
+  transform: scale(0.98);
+}
+
+.account-cta svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ===== Mobile (<= 768px) ===== */
@@ -1514,6 +1768,27 @@ button {
   .photo-site {
     padding: 5px 10px;
     font-size: 0.75rem;
+  }
+
+  .photo-modal.shift-left .photo-dialog {
+    transform: translateX(-8vw) scale(0.94);
+  }
+
+  .account-modal {
+    padding: 16px;
+  }
+
+  .account-dialog {
+    width: min(340px, 100%);
+    border-radius: 18px;
+  }
+
+  .account-header {
+    padding: 14px 16px;
+  }
+
+  .account-body {
+    padding: 16px;
   }
 }
 
