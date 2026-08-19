@@ -120,6 +120,213 @@
     }
   }
 
+  var serviceCards = document.querySelectorAll("[data-service]");
+  if (serviceCards.length) {
+    var isMobile = function () {
+      return window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+    };
+
+    function closeServicePanels(except) {
+      serviceCards.forEach(function (card) {
+        if (card === except) return;
+        card.classList.remove("open");
+        var t = card.querySelector(".service-trigger");
+        if (t) {
+          t.setAttribute("aria-expanded", "false");
+          var g = t.querySelector(".service-trigger-icon-group");
+          if (g) g.style.transform = "";
+        }
+      });
+    }
+
+    // ---- Tech-stack marquee: slow right-to-left auto-scroll, fast drag-to-scrub ----
+    function setupMarquee(container) {
+      if (container.classList.contains("is-marquee")) return;
+
+      var track = document.createElement("div");
+      track.className = "marquee-track";
+      var group = document.createElement("div");
+      group.className = "marquee-group";
+      while (container.firstChild) {
+        group.appendChild(container.firstChild);
+      }
+      track.appendChild(group);
+      container.appendChild(track);
+      container.classList.add("is-marquee");
+
+      var reduced =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var state = {
+        offset: 0,
+        speed: 0.3, // px per frame - slow and steady
+        groupWidth: 0,
+        built: false,
+        dragging: false,
+        startX: 0,
+        startOffset: 0
+      };
+
+      function build() {
+        var viewportW = container.clientWidth;
+        if (viewportW < 10) return false;
+        while (track.children.length > 1) {
+          track.removeChild(track.lastElementChild);
+        }
+        var copy = group.cloneNode(true);
+        copy.setAttribute("aria-hidden", "true");
+        track.appendChild(copy);
+        while (track.scrollWidth < viewportW * 2) {
+          track.appendChild(copy.cloneNode(true));
+        }
+        state.groupWidth = group.offsetWidth;
+        state.built = true;
+        return true;
+      }
+
+      function frame() {
+        requestAnimationFrame(frame);
+        var card = container.closest(".service-card");
+        if (!card || !card.classList.contains("open")) return;
+        if (state.dragging || reduced) return;
+        if (!state.built) {
+          if (!build()) return;
+          track.style.transform = "translateX(0)";
+        } else if (track.scrollWidth < container.clientWidth * 2) {
+          // Panel may still be expanding - rebuild once the size is stable
+          state.built = false;
+          state.offset = 0;
+          track.style.transform = "translateX(0)";
+          if (!build()) return;
+        }
+        state.offset -= state.speed;
+        if (state.groupWidth && state.offset <= -state.groupWidth) {
+          state.offset += state.groupWidth;
+        }
+        track.style.transform = "translateX(" + state.offset + "px)";
+      }
+
+      function onDown(e) {
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+        state.dragging = true;
+        if (!state.built) build();
+        state.startX = e.clientX;
+        state.startOffset = state.offset;
+        if (container.setPointerCapture) {
+          try {
+            container.setPointerCapture(e.pointerId);
+          } catch (err) {}
+        }
+        e.preventDefault();
+      }
+
+      function onMove(e) {
+        if (!state.dragging) return;
+        state.offset = state.startOffset + (e.clientX - state.startX);
+        var gw = state.groupWidth;
+        if (gw) {
+          if (state.offset > 0) state.offset -= gw;
+          if (state.offset <= -gw) state.offset += gw;
+        }
+        track.style.transform = "translateX(" + state.offset + "px)";
+      }
+
+      function onUp() {
+        state.dragging = false;
+      }
+
+      container.addEventListener("pointerdown", onDown);
+      container.addEventListener("pointermove", onMove);
+      container.addEventListener("pointerup", onUp);
+      container.addEventListener("pointercancel", onUp);
+      container.addEventListener("lostpointercapture", onUp);
+
+      requestAnimationFrame(frame);
+    }
+
+    serviceCards.forEach(function (card) {
+      var trigger = card.querySelector(".service-trigger");
+      var stackTags = card.querySelector(".service-stack-tags");
+
+      // Mini tech-stack preview in the collapsed header (first 3 logos + "+N")
+      if (trigger && stackTags && !trigger.querySelector(".service-trigger-preview")) {
+        var logos = stackTags.querySelectorAll(".stack-tag svg");
+        if (logos.length) {
+          var preview = document.createElement("span");
+          preview.className = "service-trigger-preview";
+          preview.setAttribute("aria-hidden", "true");
+          var shown = Math.min(logos.length, 3);
+          for (var i = 0; i < shown; i++) {
+            var clone = logos[i].cloneNode(true);
+            clone.removeAttribute("width");
+            clone.removeAttribute("height");
+            clone.setAttribute("class", "preview-logo");
+            preview.appendChild(clone);
+          }
+          if (logos.length > shown) {
+            var more = document.createElement("span");
+            more.className = "preview-more";
+            more.textContent = "+" + (logos.length - shown);
+            preview.appendChild(more);
+          }
+          var chevron = trigger.querySelector(".service-chevron");
+          trigger.insertBefore(preview, chevron);
+        }
+      }
+
+      if (stackTags) setupMarquee(stackTags);
+
+      if (!trigger) return;
+      var iconGroup = trigger.querySelector(".service-trigger-icon-group");
+      if (iconGroup) iconGroup.style.willChange = "transform";
+
+      function flipOpen() {
+        card.classList.add("open");
+        trigger.setAttribute("aria-expanded", "true");
+      }
+
+      function flipClose() {
+        card.classList.remove("open");
+        trigger.setAttribute("aria-expanded", "false");
+      }
+
+      trigger.addEventListener("click", function () {
+        var wasOpen = card.classList.contains("open");
+        serviceCards.forEach(function (other) {
+          if (other === card) return;
+          if (!other.classList.contains("open")) return;
+          other.classList.remove("open");
+          var ot = other.querySelector(".service-trigger");
+          if (ot) ot.setAttribute("aria-expanded", "false");
+        });
+
+        if (wasOpen) {
+          flipClose();
+          return;
+        }
+        flipOpen();
+        setTimeout(function () {
+          var rect = card.getBoundingClientRect();
+          if (rect.top < 88) {
+            card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+        }, 260);
+      });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      var openCard = document.querySelector(".service-card.open");
+      if (!openCard) return;
+      openCard.classList.remove("open");
+      var t = openCard.querySelector(".service-trigger");
+      if (t) {
+        t.setAttribute("aria-expanded", "false");
+        t.focus();
+      }
+    });
+  }
+
   var pickCards = document.querySelectorAll(".pick-card");
   var showcasePanels = document.querySelectorAll(".showcase-panel");
   var showcaseStage = document.querySelector(".showcase-stage");
