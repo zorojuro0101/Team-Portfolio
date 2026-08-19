@@ -194,7 +194,7 @@
     if (!countrySelect) return;
     var currentVal = countrySelect.value;
     countrySelect.innerHTML = '<option value="" disabled selected>Select or search country</option>';
-    
+
     var sorted = countries.slice().sort(function (a, b) {
       if (a === "Philippines") return -1;
       if (b === "Philippines") return 1;
@@ -247,7 +247,7 @@
     messageInput.addEventListener("input", function () {
       var currentLen = messageInput.value.length;
       charCountEl.textContent = currentLen + " / " + maxLen;
-      
+
       if (currentLen >= maxLen) {
         charCountEl.className = "char-count at-limit";
       } else if (currentLen >= maxLen * 0.85) {

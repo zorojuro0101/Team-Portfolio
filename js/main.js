@@ -433,6 +433,21 @@
     });
   });
 
+  // ===== Automated Project Slideshow Crossfade =====
+  var slideshowTracks = document.querySelectorAll("[data-slideshow]");
+  if (slideshowTracks.length) {
+    slideshowTracks.forEach(function (track) {
+      var slides = track.querySelectorAll(".slideshow-slide");
+      if (slides.length <= 1) return;
+      var currentSlide = 0;
+      setInterval(function () {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add("active");
+      }, 3500);
+    });
+  }
+
   document.addEventListener("keydown", function (e) {
     if (accountModal && !accountModal.hidden && e.key === "Escape") {
       closeAccountModal();

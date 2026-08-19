@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | .PNG</title>
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
   <header class="site-header">
@@ -33,7 +36,8 @@
     <section class="hero">
       <p class="hero-eyebrow">Projects</p>
       <h1 class="hero-title">Our <span class="gradient-text">Featured Work</span></h1>
-      <p class="hero-subtitle">A collection of the systems and applications we design, build, and maintain for our clients.</p>
+      <p class="hero-subtitle">A collection of the systems and applications we design, build, and maintain for our
+        clients.</p>
       <div class="hero-actions">
         <a href="about.html" class="btn btn-primary">Meet the Team</a>
         <a href="services.html" class="btn btn-outline">Our Services</a>
@@ -44,89 +48,125 @@
       <div class="section-head reveal">
         <p class="section-eyebrow">Portfolio</p>
         <h2 class="section-title">Projects we are proud of</h2>
-        <p class="section-subtitle">Meet the projects we have built together: systems designed, developed, and maintained by our team.</p>
+        <p class="section-subtitle">Meet the projects we have built together: systems designed, developed, and
+          maintained by our team.</p>
       </div>
 
-      <div class="project-grid">
+      <div class="project-showcase-list">
 
-        <article class="project-card reveal">
-          <div class="project-media project-gallery gallery-dark" id="gallery-trigger-1" data-gallery='[{"src":"project1_1.png","title":"Home Page"},{"src":"project1_2.png","title":"Shop Page"},{"src":"project1_3.png","title":"Chat Page"}]' data-site="https://ecommercevelare-production-2f46.up.railway.app" data-account='{"email":"sampleuser@gmail.com","password":"1234"}' role="button" tabindex="0" aria-label="Open project screenshots">
-            <img src="../images/velare_mobile_logo.png" alt="Velare website logo">
-            <span class="gallery-count">
-              <svg viewBox="0 0 24 24"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+        <!-- Project 1: Velare E-commerce Website -->
+        <article class="project-showcase-item reveal">
+          <div class="project-showcase-text">
+            <span class="project-showcase-tag">Web App</span>
+            <h2 class="project-showcase-title">Velare E-commerce Website</h2>
+            <p class="project-showcase-desc">
+              The web version of our Velare e-commerce platform. Browse collections, shop online,
+              and reach support through live chat in a fast, responsive web application.
+            </p>
+            <div class="project-showcase-actions">
+              <button type="button" class="project-showcase-btn"
+                data-gallery='[{"src":"project1_1.png","title":"Home Page"},{"src":"project1_2.png","title":"Shop Page"},{"src":"project1_3.png","title":"Chat Page"}]'
+                data-site="https://ecommercevelare-production-2f46.up.railway.app"
+                data-account='{"email":"sampleuser@gmail.com","password":"1234"}'>
+                View Project Details
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="project-showcase-media project-gallery gallery-dark"
+            data-gallery='[{"src":"project1_1.png","title":"Home Page"},{"src":"project1_2.png","title":"Shop Page"},{"src":"project1_3.png","title":"Chat Page"}]'
+            data-site="https://ecommercevelare-production-2f46.up.railway.app"
+            data-account='{"email":"sampleuser@gmail.com","password":"1234"}' role="button" tabindex="0"
+            aria-label="Open Velare Website screenshots">
+            <div class="slideshow-track" data-slideshow>
+              <img src="../images/project1_1.png" alt="Velare Home Page" class="slideshow-slide active">
+              <img src="../images/project1_2.png" alt="Velare Shop Page" class="slideshow-slide">
+              <img src="../images/project1_3.png" alt="Velare Chat Page" class="slideshow-slide">
+            </div>
+            <span class="slideshow-hint">Click to view gallery</span>
+            <span class="slideshow-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+              </svg>
               3 Photos
             </span>
           </div>
-          <div class="project-body">
-            <span class="project-tag">Web App</span>
-            <h3 class="project-title">Velare E-commerce Website</h3>
-            <p class="project-desc">The web version of our Velare e-commerce platform. Browse collections, shop online, and reach support through live chat in a fast, responsive web app.</p>
-          </div>
         </article>
 
-        <article class="project-card reveal reveal-delay-1">
-          <div class="project-media project-gallery gallery-dark" id="gallery-trigger" data-gallery='[{"src":"login.jpg","title":"Login Page"},{"src":"register.jpg","title":"Register Page"},{"src":"view_product.jpg","title":"View Product Page"}]' data-download="https://github.com/zorojuro0101/Velare_Mobile_Ecommerce/releases/download/v1.0.7/Velare.apk" data-account='{"email":"sampleuser@gmail.com","password":"1234"}' role="button" tabindex="0" aria-label="Open project screenshots">
-            <img src="../images/velare_mobile_logo.png" alt="Velare mobile app logo">
-            <span class="gallery-count">
-              <svg viewBox="0 0 24 24"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+        <!-- Project 2: Velare E-commerce Mobile App -->
+        <article class="project-showcase-item reverse reveal">
+          <div class="project-showcase-text">
+            <span class="project-showcase-tag">Mobile App</span>
+            <h2 class="project-showcase-title">Velare E-commerce Mobile App</h2>
+            <p class="project-showcase-desc">
+              A complete e-commerce mobile app where users can browse products, create an account,
+              and check out with ease. Clean interface, smooth experience, built to sell.
+            </p>
+            <div class="project-showcase-actions">
+              <button type="button" class="project-showcase-btn"
+                data-gallery='[{"src":"login.jpg","title":"Login Page"},{"src":"register.jpg","title":"Register Page"},{"src":"view_product.jpg","title":"View Product Page"}]'
+                data-download="https://github.com/zorojuro0101/Velare_Mobile_Ecommerce/releases/download/v1.0.7/Velare.apk"
+                data-account='{"email":"sampleuser@gmail.com","password":"1234"}'>
+                View App Details
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="project-showcase-media project-gallery gallery-dark"
+            data-gallery='[{"src":"login.jpg","title":"Login Page"},{"src":"register.jpg","title":"Register Page"},{"src":"view_product.jpg","title":"View Product Page"}]'
+            data-download="https://github.com/zorojuro0101/Velare_Mobile_Ecommerce/releases/download/v1.0.7/Velare.apk"
+            data-account='{"email":"sampleuser@gmail.com","password":"1234"}' role="button" tabindex="0"
+            aria-label="Open Velare Mobile App screenshots">
+            <div class="slideshow-track" data-slideshow>
+              <img src="../images/login.jpg" alt="Velare Mobile Login" class="slideshow-slide contain active">
+              <img src="../images/register.jpg" alt="Velare Mobile Register" class="slideshow-slide contain">
+              <img src="../images/view_product.jpg" alt="Velare Mobile View Product" class="slideshow-slide contain">
+            </div>
+            <span class="slideshow-hint">Click to view gallery</span>
+            <span class="slideshow-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+              </svg>
               3 Photos
             </span>
           </div>
-          <div class="project-body">
-            <span class="project-tag">Mobile App</span>
-            <h3 class="project-title">Velare E-commerce Mobile App</h3>
-            <p class="project-desc">A complete e-commerce mobile app where users can browse products, create an account, and check out with ease. Clean interface, smooth experience, built to sell.</p>
-          </div>
         </article>
 
-        <article class="project-card reveal reveal-delay-2 is-gallery">
-          <div class="project-media project-gallery" id="uniorg-trigger" data-gallery='[{"src":"uniorg_homepage.png","title":"Homepage"},{"src":"uniorg_login.png","title":"Login"},{"src":"uniorg_register.png","title":"Register"}]' data-site="https://uniorg-6yjm.onrender.com" data-account='{"id":"0123-1507","password":"Pass1234"}' role="button" tabindex="0" aria-label="Open UniOrg System screenshots">
-            <img src="../images/uniorg.png" alt="UniOrg System interface">
-            <span class="gallery-count">
-              <svg viewBox="0 0 24 24"><path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+        <!-- Project 3: UniOrg System -->
+        <article class="project-showcase-item reveal">
+          <div class="project-showcase-text">
+            <span class="project-showcase-tag">Web Platform</span>
+            <h2 class="project-showcase-title">UniOrg System</h2>
+            <p class="project-showcase-desc">
+              A web-based platform that manages the full lifecycle of student organizations, from
+              applications and accreditation to operations and renewal. Features AI-powered document classification,
+              online elections, event proposals, payments, and an OSAS chatbot. Built with Laravel and MySQL.
+            </p>
+            <div class="project-showcase-actions">
+              <button type="button" class="project-showcase-btn"
+                data-gallery='[{"src":"uniorg_homepage.png","title":"Homepage"},{"src":"uniorg_login.png","title":"Login"},{"src":"uniorg_register.png","title":"Register"}]'
+                data-site="https://uniorg-6yjm.onrender.com" data-account='{"id":"0123-1507","password":"Pass1234"}'>
+                View System Details
+                <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="project-showcase-media project-gallery light-bg"
+            data-gallery='[{"src":"uniorg_homepage.png","title":"Homepage"},{"src":"uniorg_login.png","title":"Login"},{"src":"uniorg_register.png","title":"Register"}]'
+            data-site="https://uniorg-6yjm.onrender.com" data-account='{"id":"0123-1507","password":"Pass1234"}'
+            role="button" tabindex="0" aria-label="Open UniOrg System screenshots">
+            <div class="slideshow-track" data-slideshow>
+              <img src="../images/uniorg_homepage.png" alt="UniOrg Homepage" class="slideshow-slide contain active">
+              <img src="../images/uniorg_login.png" alt="UniOrg Login" class="slideshow-slide contain">
+              <img src="../images/uniorg_register.png" alt="UniOrg Register" class="slideshow-slide contain">
+            </div>
+            <span class="slideshow-hint">Click to view gallery</span>
+            <span class="slideshow-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+              </svg>
               3 Screenshots
             </span>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">Web Platform</span>
-            <h3 class="project-title">UniOrg System</h3>
-            <p class="project-desc">A web-based platform that manages the full lifecycle of student organizations, from applications and accreditation to operations and renewal. Features AI-powered document classification, online elections, event proposals, payments, and an OSAS chatbot. Built with Laravel and MySQL, it serves students, org officers, admins, OSAS, and deans.</p>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-media">
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">Database</span>
-            <h3 class="project-title">Project Four</h3>
-            <p class="project-desc">Placeholder description for the fourth project. Details about what we built and how it helped will go here.</p>
-            <a href="#" class="project-link">Learn more</a>
-          </div>
-        </article>
-
-        <article class="project-card reveal reveal-delay-1">
-          <div class="project-media">
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">Automation</span>
-            <h3 class="project-title">Project Five</h3>
-            <p class="project-desc">Placeholder description for the fifth project. Details about what we built and how it helped will go here.</p>
-            <a href="#" class="project-link">Learn more</a>
-          </div>
-        </article>
-
-        <article class="project-card reveal reveal-delay-2">
-          <div class="project-media">
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
-          </div>
-          <div class="project-body">
-            <span class="project-tag">UI / UX</span>
-            <h3 class="project-title">Project Six</h3>
-            <p class="project-desc">Placeholder description for the sixth project. Details about what we built and how it helped will go here.</p>
-            <a href="#" class="project-link">Learn more</a>
           </div>
         </article>
 
@@ -142,29 +182,44 @@
         <span class="photo-title" id="photo-title">Login Page</span>
         <div class="photo-actions">
           <a class="photo-site" id="photo-site" href="#" target="_blank" rel="noopener" hidden>
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+            </svg>
             Visit Website
           </a>
           <a class="photo-site photo-download" id="photo-download" href="#" download hidden>
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
             Download APK
           </a>
           <button class="photo-site photo-sample" id="photo-sample" type="button" hidden>
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
+            </svg>
             Sample Account
           </button>
           <button class="photo-close" data-photo-close aria-label="Close">
-            <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2.2" d="M6 6l12 12M18 6L6 18"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-width="2.2" d="M6 6l12 12M18 6L6 18" />
+            </svg>
           </button>
         </div>
       </div>
       <div class="photo-stage" id="photo-stage">
         <img id="photo-img" src="" alt="Project screenshot">
         <button class="photo-nav photo-prev" id="photo-prev" aria-label="Previous photo">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
         </button>
         <button class="photo-nav photo-next" id="photo-next" aria-label="Next photo">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
         </button>
       </div>
       <div class="photo-footer">
@@ -179,14 +234,19 @@
     <div class="account-dialog" role="dialog" aria-modal="true" aria-label="Sample account credentials">
       <div class="account-header">
         <span class="account-badge">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
+          </svg>
         </span>
         <div class="account-heading">
           <h3 class="account-title">Sample Account</h3>
           <p class="account-subtitle">Use these credentials to explore the demo website</p>
         </div>
         <button class="account-close" type="button" data-account-close aria-label="Close">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-width="2.2" d="M6 6l12 12M18 6L6 18"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-width="2.2" d="M6 6l12 12M18 6L6 18" />
+          </svg>
         </button>
       </div>
       <div class="account-body">
@@ -195,7 +255,10 @@
           <div class="account-row">
             <code class="account-value" id="account-email">sampleuser@gmail.com</code>
             <button class="account-copy" type="button" data-copy-target="account-email" aria-label="Copy email">
-              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5A3.375 3.375 0 0 0 6.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.251 2.251 0 0 0-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 0 0-9-9Z"/></svg>
+              <svg viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5A3.375 3.375 0 0 0 6.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.251 2.251 0 0 0-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 0 0-9-9Z" />
+              </svg>
               <span data-copy-label>Copy</span>
             </button>
           </div>
@@ -205,14 +268,21 @@
           <div class="account-row">
             <code class="account-value" id="account-password">1234</code>
             <button class="account-copy" type="button" data-copy-target="account-password" aria-label="Copy password">
-              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5A3.375 3.375 0 0 0 6.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.251 2.251 0 0 0-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 0 0-9-9Z"/></svg>
+              <svg viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.057 1.123-.08M15.75 18H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08M15.75 18.75v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5A3.375 3.375 0 0 0 6.375 7.5H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.251 2.251 0 0 0-2.15 1.586m5.8 0c.065.21.1.433.1.664v.75h-6V4.5c0-.231.035-.454.1-.664M6.75 7.5H4.875c-.621 0-1.125.504-1.125 1.125v12c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V16.5a9 9 0 0 0-9-9Z" />
+              </svg>
               <span data-copy-label>Copy</span>
             </button>
           </div>
         </div>
-        <a class="account-cta" id="account-cta" href="https://ecommercevelare-production-2f46.up.railway.app" target="_blank" rel="noopener">
+        <a class="account-cta" id="account-cta" href="https://ecommercevelare-production-2f46.up.railway.app"
+          target="_blank" rel="noopener">
           Open Website
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          </svg>
         </a>
       </div>
     </div>
@@ -224,8 +294,10 @@
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="services.html">Services</a>
-        <a href="expertise.html">Expertise</a>
-        <a href="contact.html">Contact</a>
+        <<<<<<< HEAD <a href="contact.html">Contact</a>
+          =======
+          <a href="expertise.html">Expertise</a>
+          >>>>>>> 4db1e56d30d4962427ebe061bc4b017d0a581252
       </div>
       <p>&copy; <span id="year"></span> .PNG. All rights reserved.</p>
     </div>
@@ -233,4 +305,5 @@
 
   <script src="../js/main.js"></script>
 </body>
+
 </html>

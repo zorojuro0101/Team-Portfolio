@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Clean transparent background with bold Apple-style typography matching header logo -->
+  <text x="50%" y="68%" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="900" letter-spacing="-0.04em" fill="#1d1d1f">
+    <tspan fill="#0071e3">.</tspan>PNG
+  </text>
+</svg>
