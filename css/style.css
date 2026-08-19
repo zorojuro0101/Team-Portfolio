@@ -967,15 +967,21 @@ button {
   aspect-ratio: 16 / 10;
   border-radius: 24px;
   overflow: hidden;
-  background-color: #000000;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
   cursor: pointer;
-  transition: transform 400ms var(--ease-apple), box-shadow 400ms var(--ease-apple);
+  transition: transform 400ms var(--ease-apple), box-shadow 400ms var(--ease-apple), border-color 400ms var(--ease-apple);
+}
+
+.project-showcase-media.gallery-dark {
+  background-color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.14);
 }
 
 .project-showcase-media.light-bg {
-  background-color: #f8fafc;
-  border: 1px solid var(--color-border);
+  background-color: #ffffff;
 }
 
 .project-showcase-media:hover {
@@ -1002,7 +1008,7 @@ button {
 
 .slideshow-slide.contain {
   object-fit: contain;
-  padding: 24px;
+  padding: 8px;
 }
 
 .slideshow-slide.active {
