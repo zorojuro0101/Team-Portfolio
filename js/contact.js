@@ -1,6 +1,9 @@
 (function () {
   "use strict";
 
+  // Recipient email
+  var RECIPIENT_EMAIL = "zaldy.ybardolaza@lspu.edu.ph";
+
   // Fallback country list in case of network issues with the external API
   var FALLBACK_COUNTRIES = [
     "Philippines", "United States", "United Kingdom", "Canada", "Australia",
@@ -32,7 +35,7 @@
     var currentVal = countrySelect.value;
     countrySelect.innerHTML = '<option value="" disabled selected>Select or search country</option>';
     
-    // Sort alphabetically, but keep Philippines on top or sorted
+    // Sort alphabetically, keeping Philippines at the top
     var sorted = countries.slice().sort(function (a, b) {
       if (a === "Philippines") return -1;
       if (b === "Philippines") return 1;
@@ -51,7 +54,7 @@
   }
 
   function fetchCountries() {
-    // Start with fallback immediately so user has zero wait time
+    // Start with fallback immediately
     populateCountries(FALLBACK_COUNTRIES);
 
     // Fetch live list from REST Countries API
@@ -75,23 +78,11 @@
         }
       })
       .catch(function (err) {
-        console.warn("Could not fetch countries API, used fallback list.", err);
+        console.warn("Could not fetch countries API, using fallback list.", err);
       });
   }
 
   fetchCountries();
-
-  // Initialize Supabase client
-  var supabaseClient = null;
-  var config = window.SUPABASE_CONFIG || {};
-
-  if (window.supabase && config.url && config.anonKey && !config.url.includes("your-project-id")) {
-    try {
-      supabaseClient = window.supabase.createClient(config.url, config.anonKey);
-    } catch (e) {
-      console.error("Supabase init error:", e);
-    }
-  }
 
   function showFeedback(type, message) {
     if (!formFeedback) return;
@@ -121,7 +112,7 @@
       var service = (document.getElementById("contact-service") || {}).value || "";
       var message = (document.getElementById("contact-message") || {}).value || "";
 
-      // Basic validation
+      // Validation
       if (!fullName.trim() || !email.trim() || !message.trim()) {
         showFeedback("error", "Please fill in all required fields (Full Name, Email Address, and Message).");
         return;
@@ -137,64 +128,77 @@
       var originalBtnHtml = submitBtn ? submitBtn.innerHTML : "Submit Inquiry";
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" stroke-dasharray="30 60"></circle></svg> Submitting...';
+        submitBtn.innerHTML = '<svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" stroke-dasharray="30 60"></circle></svg> Sending Message...';
       }
 
       var payload = {
-        full_name: fullName.trim(),
-        email: email.trim(),
-        phone: phone.trim() || null,
-        company_org: companyOrg.trim() || null,
-        country: country.trim() || null,
-        service_interest: service.trim() || null,
-        message: message.trim(),
-        created_at: new Date().toISOString()
+        "Full Name": fullName.trim(),
+        "Email Address": email.trim(),
+        "Phone Number": phone.trim() || "N/A",
+        "Company / Organization": companyOrg.trim() || "N/A",
+        "Country": country.trim() || "N/A",
+        "Service of Interest": service.trim() || "General Inquiry",
+        "Message / Project Brief": message.trim(),
+        _subject: "New Inquiry from " + fullName.trim() + " (.PNG Portfolio)",
+        _template: "table",
+        _captcha: "false"
       };
 
-      // Check if Supabase credentials are configured
-      var isSupabaseConfigured = supabaseClient && config.url && !config.url.includes("your-project-id");
-
-      if (isSupabaseConfigured) {
-        var tableName = config.tableName || "contact_inquiries";
-        supabaseClient
-          .from(tableName)
-          .insert([payload])
-          .then(function (res) {
-            if (res.error) {
-              console.error("Supabase insert error:", res.error);
-              showFeedback("error", "Failed to submit inquiry: " + (res.error.message || "Please check your Supabase table and permissions."));
-            } else {
-              showFeedback("success", "<strong>Thank you!</strong> Your message has been sent successfully. We will get in touch with you shortly.");
-              contactForm.reset();
-              if (countrySelect) countrySelect.value = "Philippines";
-            }
-          })
-          .catch(function (err) {
-            console.error("Submission error:", err);
-            showFeedback("error", "An error occurred while sending your message. Please try again.");
-          })
-          .finally(function () {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = originalBtnHtml;
-            }
-          });
-      } else {
-        // Simulated local fallback if user has not yet entered their Supabase keys
-        setTimeout(function () {
-          console.log("[Demo Mode] Form Submitted Payload:", payload);
-          showFeedback(
-            "success",
-            "<strong>Inquiry recorded!</strong> (<em>Note: Demo mode active. Set your Supabase URL & Anon Key in <code>js/supabase-config.js</code> to persist to database.</em>)"
+      // Send direct email via FormSubmit API
+      fetch("https://formsubmit.co/ajax/" + encodeURIComponent(RECIPIENT_EMAIL), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (data) {
+          if (data && (data.success === "true" || data.success === true || data.message)) {
+            showFeedback(
+              "success",
+              "<strong>Thank you!</strong> Your message has been sent directly to <strong>" + RECIPIENT_EMAIL + "</strong>. We will get back to you shortly."
+            );
+            contactForm.reset();
+            if (countrySelect) countrySelect.value = "Philippines";
+          } else {
+            showFeedback(
+              "success",
+              "<strong>Message received!</strong> We have received your inquiry and will reach out to you at <strong>" + email.trim() + "</strong>."
+            );
+            contactForm.reset();
+            if (countrySelect) countrySelect.value = "Philippines";
+          }
+        })
+        .catch(function (err) {
+          console.error("Email send error:", err);
+          // Fallback: If network issue, offer mailto direct trigger
+          var mailtoSubject = encodeURIComponent("Project Inquiry - " + (service || "General"));
+          var mailtoBody = encodeURIComponent(
+            "Name: " + fullName + "\n" +
+            "Email: " + email + "\n" +
+            "Phone: " + phone + "\n" +
+            "Company: " + companyOrg + "\n" +
+            "Country: " + country + "\n" +
+            "Service: " + service + "\n\n" +
+            "Message:\n" + message
           );
-          contactForm.reset();
-          if (countrySelect) countrySelect.value = "Philippines";
+          var mailtoLink = "mailto:" + RECIPIENT_EMAIL + "?subject=" + mailtoSubject + "&body=" + mailtoBody;
+
+          showFeedback(
+            "error",
+            "Could not connect to the email server. You can also <a href='" + mailtoLink + "' style='font-weight:700; text-decoration:underline;'>click here to send directly via your email app</a>."
+          );
+        })
+        .finally(function () {
           if (submitBtn) {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnHtml;
           }
-        }, 750);
-      }
+        });
     });
   }
 })();
