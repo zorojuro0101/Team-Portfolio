@@ -433,18 +433,39 @@
     });
   });
 
-  // ===== Automated Project Slideshow Crossfade =====
-  var slideshowTracks = document.querySelectorAll("[data-slideshow]");
-  if (slideshowTracks.length) {
-    slideshowTracks.forEach(function (track) {
+  // ===== Hover-Triggered Project Slideshow Crossfade =====
+  var showcaseItems = document.querySelectorAll(".project-showcase-item");
+  if (showcaseItems.length) {
+    showcaseItems.forEach(function (item) {
+      var track = item.querySelector("[data-slideshow]");
+      if (!track) return;
       var slides = track.querySelectorAll(".slideshow-slide");
       if (slides.length <= 1) return;
+
       var currentSlide = 0;
-      setInterval(function () {
+      var slideInterval = null;
+
+      function nextSlide() {
         slides[currentSlide].classList.remove("active");
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add("active");
-      }, 3500);
+      }
+
+      function startSlideshow() {
+        if (slideInterval) return;
+        // Trigger first step smoothly after a quick moment, then loop
+        slideInterval = setInterval(nextSlide, 2200);
+      }
+
+      function stopSlideshow() {
+        if (slideInterval) {
+          clearInterval(slideInterval);
+          slideInterval = null;
+        }
+      }
+
+      item.addEventListener("mouseenter", startSlideshow);
+      item.addEventListener("mouseleave", stopSlideshow);
     });
   }
 
