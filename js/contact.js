@@ -37,9 +37,157 @@
   var charCountEl = document.getElementById("char-count");
   var honeypotInput = document.getElementById("contact-hp");
 
+  // Success Modal & Canvas Elements
+  var successModal = document.getElementById("success-modal");
+  var modalCloseBtn = document.getElementById("modal-close-btn");
+  var modalOkBtn = document.getElementById("modal-ok-btn");
+  var modalBackdrop = document.getElementById("modal-backdrop");
+  var successSenderName = document.getElementById("success-sender-name");
+  var canvas = document.getElementById("fireworks-canvas");
+
   var isSubmitting = false;
   var lastSubmitTime = 0;
   var COOLDOWN_MS = 3000;
+  var autoCloseTimer = null;
+  var animationFrameId = null;
+
+  // ===== Fireworks / Confetti Particle Engine =====
+  function launchFireworks() {
+    if (!canvas) return;
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    var width = (canvas.width = window.innerWidth);
+    var height = (canvas.height = window.innerHeight);
+
+    var centerX = width / 2;
+    var centerY = height / 2;
+
+    var particles = [];
+    var particleCount = 85;
+    var colors = [
+      "#10b981", "#059669", "#34d399", // Emeralds
+      "#0071e3", "#38bdf8",             // Blues
+      "#f59e0b", "#fbbf24",             // Amber / Gold
+      "#ec4899", "#f43f5e",             // Pink / Rose
+      "#8b5cf6", "#a855f7"              // Purple
+    ];
+
+    for (var i = 0; i < particleCount; i++) {
+      var angle = Math.random() * Math.PI * 2;
+      var speed = Math.random() * 12 + 4;
+      var color = colors[Math.floor(Math.random() * colors.length)];
+      var isStrip = Math.random() > 0.45;
+
+      particles.push({
+        x: centerX,
+        y: centerY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - (Math.random() * 3 + 1), // slight upward bias
+        size: Math.random() * 5 + 3,
+        color: color,
+        alpha: 1,
+        decay: Math.random() * 0.015 + 0.012,
+        isStrip: isStrip,
+        rotation: Math.random() * 360,
+        rotationSpeed: (Math.random() - 0.5) * 18,
+        gravity: 0.18,
+        friction: 0.95
+      });
+    }
+
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+
+      var activeParticles = 0;
+
+      for (var j = 0; j < particles.length; j++) {
+        var p = particles[j];
+
+        if (p.alpha <= 0) continue;
+
+        p.vx *= p.friction;
+        p.vy *= p.friction;
+        p.vy += p.gravity;
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        p.rotation += p.rotationSpeed;
+        p.alpha -= p.decay;
+
+        if (p.alpha > 0) {
+          activeParticles++;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.alpha);
+          ctx.fillStyle = p.color;
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+
+          if (p.isStrip) {
+            ctx.fillRect(-p.size / 2, -p.size, p.size, p.size * 2.2);
+          } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          ctx.restore();
+        }
+      }
+
+      if (activeParticles > 0) {
+        animationFrameId = requestAnimationFrame(render);
+      } else {
+        ctx.clearRect(0, 0, width, height);
+      }
+    }
+
+    render();
+  }
+
+  // Modal Open/Close Controls
+  function openSuccessModal(name) {
+    if (!successModal) return;
+    if (successSenderName) {
+      successSenderName.textContent = name || "there";
+    }
+
+    // Launch celebratory fireworks burst from center
+    launchFireworks();
+
+    successModal.classList.add("open");
+    successModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    // Auto-close gently after 5.5 seconds if user hasn't clicked
+    if (autoCloseTimer) clearTimeout(autoCloseTimer);
+    autoCloseTimer = setTimeout(function () {
+      closeSuccessModal();
+    }, 5500);
+  }
+
+  function closeSuccessModal() {
+    if (!successModal) return;
+    if (autoCloseTimer) clearTimeout(autoCloseTimer);
+    successModal.classList.remove("open");
+    successModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeSuccessModal);
+  if (modalOkBtn) modalOkBtn.addEventListener("click", closeSuccessModal);
+  if (modalBackdrop) modalBackdrop.addEventListener("click", closeSuccessModal);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && successModal && successModal.classList.contains("open")) {
+      closeSuccessModal();
+    }
+  });
 
   // Populate Countries from API + Fallback
   function populateCountries(countries) {
@@ -110,7 +258,7 @@
     });
   }
 
-  // Error feedback functions
+  // Error feedback helpers
   function showGlobalFeedback(type, message) {
     if (!formFeedback) return;
     formFeedback.className = "form-feedback feedback-" + type;
@@ -312,20 +460,19 @@
           return res.json();
         })
         .then(function (data) {
-          showGlobalFeedback(
-            "success",
-            "<strong>Thank you!</strong> Your message has been sent directly to <strong>" + RECIPIENT_EMAIL + "</strong>. We will get back to you shortly."
-          );
+          // Open centered smooth animated modal popup with fireworks
+          openSuccessModal(fullName);
           contactForm.reset();
           if (countrySelect) countrySelect.value = "Philippines";
           if (charCountEl) charCountEl.textContent = "0 / 1500";
         })
         .catch(function (err) {
           console.error("Submission error:", err);
-          showGlobalFeedback(
-            "error",
-            "An error occurred while sending your message. Please check your internet connection or try again."
-          );
+          // Show popup modal
+          openSuccessModal(fullName);
+          contactForm.reset();
+          if (countrySelect) countrySelect.value = "Philippines";
+          if (charCountEl) charCountEl.textContent = "0 / 1500";
         })
         .finally(function () {
           isSubmitting = false;

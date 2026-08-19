@@ -235,6 +235,35 @@
     </div>
   </footer>
 
+  <!-- Success Centered Modal Popup with Fireworks Animation -->
+  <div id="success-modal" class="success-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="success-modal-title">
+    <div class="success-modal-backdrop" id="modal-backdrop"></div>
+    <canvas id="fireworks-canvas" class="fireworks-canvas"></canvas>
+    <div class="success-modal-card">
+      <button type="button" class="success-modal-close" id="modal-close-btn" aria-label="Close modal">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="success-icon-wrapper anim-step-1">
+        <div class="success-icon-pulse"></div>
+        <div class="success-icon-circle">
+          <svg class="success-checkmark" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="m4.5 12.75 6 6 9-13.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <h3 id="success-modal-title" class="success-modal-title anim-step-2">Message Sent!</h3>
+      <p class="success-modal-desc anim-step-3">
+        Thank you, <strong id="success-sender-name" class="success-highlight">there</strong>! Your inquiry has been sent directly to <strong>zaldy.ybardolaza@lspu.edu.ph</strong>. We will get in touch with you shortly.
+      </p>
+
+      <div class="success-modal-actions anim-step-4">
+        <button type="button" id="modal-ok-btn" class="btn btn-primary success-modal-btn">Got it</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/contact.js"></script>
   <script src="../js/main.js"></script>
 </body>
