@@ -375,6 +375,18 @@
           setAvatarNames(null);
           applyState(next);
         });
+        if (next && window.matchMedia && window.matchMedia("(max-width: 768px)").matches) {
+          // mobile: scroll down to the large circular image/details that appears
+          setTimeout(function () {
+            var activePanel = document.querySelector('.showcase-panel.active');
+            var target = activePanel || showcaseStage;
+            if (!target) return;
+            var headerEl = document.querySelector(".site-header");
+            var headerH = headerEl ? headerEl.offsetHeight : 0;
+            var top = target.getBoundingClientRect().top + window.scrollY - headerH - 16;
+            window.scrollTo({ top: top, behavior: "smooth" });
+          }, 120);
+        }
       });
     });
 
