@@ -889,6 +889,217 @@ button {
   text-decoration: underline;
 }
 
+/* ===== Bento Grid (Expertise page) ===== */
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.bento-card {
+  padding: 26px 28px;
+  border-radius: var(--radius-card);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  transition: transform 350ms var(--ease-apple), box-shadow 350ms var(--ease-apple);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+}
+
+.bento-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.bento-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background-color: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.bento-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--color-accent);
+}
+
+.bento-header-info {
+  flex: 1;
+}
+
+.bento-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.bento-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+  line-height: 1.45;
+}
+
+.bento-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.bento-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+  border: 1.5px solid var(--color-accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: transform 250ms var(--ease-apple), box-shadow 250ms var(--ease-apple), background-color 250ms var(--ease-apple);
+}
+
+.bento-tag:hover {
+  transform: translateY(-2px);
+  background-color: rgba(0, 113, 227, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.12);
+}
+
+.bento-tag svg,
+.bento-tag img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* ===== ROI & Performance Metrics ===== */
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.metric-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform 350ms var(--ease-apple), box-shadow 350ms var(--ease-apple), border-color 350ms var(--ease-apple);
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 16px 40px rgba(0, 113, 227, 0.08);
+}
+
+.metric-number {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+.metric-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+.metric-desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+/* ===== US Client Guarantees ===== */
+
+.guarantee-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.guarantee-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 30px 26px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  transition: transform 350ms var(--ease-apple), box-shadow 350ms var(--ease-apple), border-color 350ms var(--ease-apple);
+}
+
+.guarantee-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 16px 40px rgba(0, 113, 227, 0.08);
+}
+
+.guarantee-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(0, 113, 227, 0.08);
+  border: 1.5px solid var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.guarantee-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--color-accent);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.guarantee-info {
+  flex: 1;
+}
+
+.guarantee-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--color-text);
+}
+
+.guarantee-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
 /* ===== Services ===== */
 
 .service-card {
@@ -1789,6 +2000,27 @@ button {
 
   .account-body {
     padding: 16px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .guarantee-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 540px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
   }
 }
 
