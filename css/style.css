@@ -905,7 +905,7 @@ button {
   transition: transform 350ms var(--ease-apple), box-shadow 350ms var(--ease-apple);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .bento-card:hover {
@@ -917,7 +917,7 @@ button {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .bento-icon {
