@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  // Destination email address
+  // Target recipient email
   var RECIPIENT_EMAIL = "zaldy.ybardolaza@lspu.edu.ph";
 
   // Fallback country list
@@ -37,8 +37,9 @@
   var charCountEl = document.getElementById("char-count");
   var honeypotInput = document.getElementById("contact-hp");
 
+  var isSubmitting = false;
   var lastSubmitTime = 0;
-  var COOLDOWN_MS = 2500;
+  var COOLDOWN_MS = 3000;
 
   // Populate Countries from API + Fallback
   function populateCountries(countries) {
@@ -244,7 +245,7 @@
     return isValid;
   }
 
-  // Handle direct message submission without third-party activation links
+  // Handle direct automatic background submission
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -264,10 +265,12 @@
       }
 
       if (!validateForm()) {
-        showGlobalFeedback("error", "Please correct the highlighted errors above.");
+        showGlobalFeedback("error", "Please correct the highlighted errors above before submitting.");
         return;
       }
 
+      if (isSubmitting) return;
+      isSubmitting = true;
       lastSubmitTime = now;
 
       var fullName = fullNameInput.value.trim();
@@ -277,36 +280,60 @@
       var service = serviceSelect ? serviceSelect.value.trim() : "General Inquiry";
       var message = messageInput.value.trim();
 
-      // Build clean formatted email body
-      var emailSubject = "Project Inquiry from " + fullName + " (" + (service || "General") + ")";
-      var emailBody = 
-        "Full Name: " + fullName + "\n" +
-        "Email Address: " + email + "\n" +
-        "Company / Organization: " + (company || "N/A") + "\n" +
-        "Country: " + country + "\n" +
-        "Service of Interest: " + service + "\n\n" +
-        "--------------------------------------------------\n" +
-        "Message / Project Brief:\n" +
-        message + "\n" +
-        "--------------------------------------------------";
+      // Loading state on button
+      var originalBtnHtml = submitBtn ? submitBtn.innerHTML : "Submit Inquiry";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<svg class="spinner" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" stroke-dasharray="30 60"></circle></svg> Sending Inquiry...';
+      }
 
-      var mailtoUrl = "mailto:" + encodeURIComponent(RECIPIENT_EMAIL) + 
-                      "?subject=" + encodeURIComponent(emailSubject) + 
-                      "&body=" + encodeURIComponent(emailBody);
+      var payload = {
+        "Full Name": fullName,
+        "Email Address": email,
+        "Company / Organization": company || "N/A",
+        "Country": country,
+        "Service of Interest": service,
+        "Message / Project Brief": message,
+        _subject: "New Inquiry from " + fullName + " (.PNG Portfolio)",
+        _template: "table",
+        _captcha: "false"
+      };
 
-      // Trigger direct email dispatch via mailto (no activation link / no 3rd party middleman)
-      window.location.href = mailtoUrl;
-
-      // Display clean success state on page
-      showGlobalFeedback(
-        "success",
-        "<strong>Inquiry Ready!</strong> Your email application has been opened to send the message directly to <strong>" + RECIPIENT_EMAIL + "</strong>.<br><br>" +
-        "<a href='" + mailtoUrl + "' class='btn btn-primary' style='display:inline-block; font-size:0.875rem; padding:8px 18px; margin-top:6px; color:#ffffff;'>Click here if your email app didn't open</a>"
-      );
-
-      contactForm.reset();
-      if (countrySelect) countrySelect.value = "Philippines";
-      if (charCountEl) charCountEl.textContent = "0 / 1500";
+      // Automatic background POST request directly to email
+      fetch("https://formsubmit.co/ajax/" + encodeURIComponent(RECIPIENT_EMAIL), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (data) {
+          showGlobalFeedback(
+            "success",
+            "<strong>Thank you!</strong> Your message has been sent directly to <strong>" + RECIPIENT_EMAIL + "</strong>. We will get back to you shortly."
+          );
+          contactForm.reset();
+          if (countrySelect) countrySelect.value = "Philippines";
+          if (charCountEl) charCountEl.textContent = "0 / 1500";
+        })
+        .catch(function (err) {
+          console.error("Submission error:", err);
+          showGlobalFeedback(
+            "error",
+            "An error occurred while sending your message. Please check your internet connection or try again."
+          );
+        })
+        .finally(function () {
+          isSubmitting = false;
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+          }
+        });
     });
   }
 })();
